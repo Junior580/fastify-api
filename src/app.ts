@@ -2,7 +2,7 @@ import fastify from "fastify";
 
 const app = fastify();
 
-app.get("/", async (request, reply) => {
+app.get("/", async (_, reply) => {
   reply.send({ message: "hello world" });
 });
 
