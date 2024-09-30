@@ -2,17 +2,13 @@ pipeline {
     agent any
 
     stages {
-      stages {
-        stage('Checkout') {
+        stage('Build') {
             steps {
-                checkout scm
+                // Aqui você pode rodar qualquer comando shell (para Linux/Mac) ou batch (para Windows)
+                sh 'echo "Rodando o build!"'
             }
         }
-        stage('Test') {
-            steps {
-                sh 'npm test'
-            }
-        }
-   }
+    }
 }
+
 
