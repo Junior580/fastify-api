@@ -2,19 +2,17 @@ pipeline {
     agent any
 
     stages {
-        stage('Build') {
+        stage('Install Dependencies') {
             steps {
-                sh 'npm install' // Instalar dependências
-                sh 'npm run build' // Rodar o build do projeto
+                sh 'docker exec -it app npm install' // Instalar dependências no container do Node.js
             }
         }
-        stage('Test') {
+        stage('Run Tests') {
             steps {
-                sh 'npm test' // Rodar os testes
+                sh 'docker exec -it app npm test' // Rodar os testes no container do Node.js
             }
         }
     }
 }
-
 
 
