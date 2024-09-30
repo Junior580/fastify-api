@@ -4,11 +4,17 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                // Aqui você pode rodar qualquer comando shell (para Linux/Mac) ou batch (para Windows)
-                sh 'echo "Rodando o build!"'
+                sh 'npm install' // Instalar dependências
+                sh 'npm run build' // Rodar o build do projeto
+            }
+        }
+        stage('Test') {
+            steps {
+                sh 'npm test' // Rodar os testes
             }
         }
     }
 }
+
 
 
