@@ -1,27 +1,12 @@
 pipeline {
-    agent any
-
+    agent {
+        docker { image 'node:22-alpine' }
+    }
     stages {
-        stage('Install Dependencies') {
+        stage('Test') {
             steps {
-                script {
-                    docker.image('node:22-alpine').inside {
-                        sh 'npm install' // Executa o npm install dentro do container Node.js
-                    }
-                }
-            }
-        }
-        stage('Run Tests') {
-            steps {
-                script {
-                    docker.image('node:22-alpine').inside {
-                        sh 'npm test' // Executa os testes dentro do container Node.js
-                    }
-                }
+                sh 'node --version'
             }
         }
     }
 }
-
-
-
