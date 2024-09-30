@@ -4,15 +4,24 @@ pipeline {
     stages {
         stage('Install Dependencies') {
             steps {
-                sh 'docker exec -it app npm install' // Instalar dependências no container do Node.js
+                script {
+                    docker.image('node:22-alpine').inside {
+                        sh 'npm install' // Executa o npm install dentro do container Node.js
+                    }
+                }
             }
         }
         stage('Run Tests') {
             steps {
-                sh 'docker exec -it app npm test' // Rodar os testes no container do Node.js
+                script {
+                    docker.image('node:22-alpine').inside {
+                        sh 'npm test' // Executa os testes dentro do container Node.js
+                    }
+                }
             }
         }
     }
 }
+
 
 
